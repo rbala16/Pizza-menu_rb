@@ -65,7 +65,7 @@ function Pizza(){
 return (
   <div>
     <img src="pizzas/spinaci.jpg" alt="Pizza spinaci"/>
-    <h2>Pizza Spinaci</h2>
+    <h3>Pizza Spinaci</h3>
     <p>Tomato, mozarella, spinach, and ricotta cheese</p>
   </div>
 )
@@ -100,9 +100,12 @@ function Footer(){
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
   
-  if(hour >= openHour && hour <= closeHour)
-    alert('Sorry we are closed');
-return <footer>{new Date().toLocaleTimeString()}We are currently open</footer>
+//   if(hour >= openHour && hour <= closeHour)
+//     alert('Sorry we are closed');
+return( 
+<footer className="footer">
+  {new Date().toLocaleTimeString()}We are currently open</footer>
+);
 }
 
 
