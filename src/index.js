@@ -132,16 +132,21 @@ if(!openHour) return  (<p>We are happy to welcome you between {openHour}:00
 return( 
 <footer className="footer">
   {isOpen ? (
-   <div className="order">
-  <p>We are open untill {closeHour}:00. Come visit us or order online</p>
-  <button className="btn">Order</button>
-  </div>
+   <Order closeHour={closeHour}/>
  ): <p>We are happy to welcome you between {openHour}:00 
  and {closeHour}:00.</p>}
   </footer>
   );
 }
 
+function Order(props){
+  return(
+    <div className="order">
+    <p>We are open untill {props.closeHour}:00. Come visit us or order online</p>
+    <button className="btn">Order</button>
+    </div>
+  )
+}
 
 //React v18
 const root = ReactDOM.createRoot(document.getElementById("root"));
