@@ -16,7 +16,7 @@ const pizzaData = [
     ingredients: "Tomato and mozarella",
     price: 10,
     photoName: "pizzas/margherita.jpg",
-    soldOut: false,
+    soldOut: true,
   },
   {
     name: "Pizza Spinaci",
@@ -37,7 +37,7 @@ const pizzaData = [
     ingredients: "Tomato, mozarella, and pepperoni",
     price: 15,
     photoName: "pizzas/salamino.jpg",
-    soldOut: true,
+    soldOut: false,
   },
   {
     name: "Pizza Prosciutto",
@@ -68,7 +68,7 @@ function Header(){
   const style = {};
   return(
    <header className="header">
-  <h1 style={style}>Fast React Pizza Co.</h1>
+  <h1 style={style}>Spicy Indian Style Pizza</h1>
   </header>
   );
   }
@@ -81,14 +81,24 @@ function Menu(){
   return (
   <main className="menu">
   <h2>Our menu</h2>
+
+  
 {
   numPizzas > 0 ? (
+    <>
+      <p>Discover the true taste of India with our selection 
+        of pizzas, all crafted from our stone oven. Choose from
+         6 creative and delicious options, made with organic
+          ingredients for an authentic dining experience.
+      </p>
+    
     <ul className="pizzas">
     {
-      pizzaData.map(pizza =>
+      pizzaData.map((pizza) =>
          <Pizza pizzaObject={pizza} key={pizza.name}/>)
     }
   </ul>
+  </>
   )  : <p>We are still working on our menu.Please come back later:</p>
 }
 
@@ -103,14 +113,21 @@ function Menu(){
 
 function Pizza({pizzaObject}){
 
-if(pizzaObject.soldOut) return null;
+// if(pizzaObject.soldOut) return null;
   return (
-    <li className="pizza">
+    <li className={`pizza  ${pizzaObject.soldOut ? "sold-out": ""}`}>
       <img src={pizzaObject.photoName} alt={pizzaObject.name}/>
       <div>
       <h3>{pizzaObject.name}</h3>
       <p>{pizzaObject.ingredients}</p>
-      <span>{pizzaObject.price + 3}</span>
+      {/* {
+        pizzaObject.soldOut ? (
+        <span>SOLD OUT</span>
+      ) : (
+        <span>{pizzaObject.price}</span>
+      )
+      } */}
+      <span>{pizzaObject.soldOut ? "SOLD OUT" :pizzaObject.price}</span>
       </div>
     </li>
   )
@@ -138,7 +155,7 @@ return(
   );
 }
 
-function Order(closeHour,openHour){
+function Order({closeHour,openHour}){
   return(
     <div className="order">
     <p>We are open from {openHour}:00 to {closeHour}:00. Come visit us or order online</p>
